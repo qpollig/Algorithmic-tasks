@@ -17,7 +17,13 @@ if LOCAL:
 def solution(node, idx):
     # Напишите код функции здесь.
     # ヽ(´▽`)/
-    pass
+    if idx == 0:
+        return node.next_item
+    current = node
+    for i in range(idx - 1):
+        current = current.next_item
+    current.next_item = current.next_item.next_item
+    return node
 
 
 # Тестирующая функция для проверки решения.
