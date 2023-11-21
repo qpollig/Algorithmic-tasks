@@ -9,7 +9,7 @@ def count_platforms():
     count: int = 0
     left: int = 0
     right: int = len(arr) - 1
-    while left < right:
+    while left <= right:
         if arr[left] + arr[right] <= limit:
             count += 1
             left += 1
