@@ -1,9 +1,10 @@
+# 22 ноя 2023, 13:13:14 98455989 OK 48ms 4.23Mb
 import sys
 
 
-def count_platforms():
-    arr_str: list[str] = sys.stdin.readline().rstrip().split()
-    limit: int = int(sys.stdin.readline().rstrip())
+def count_platforms(arr_str: list[str], limit: int) -> int:
+    """Определяет минимальное количество транспортных платформ,
+    необходимое для перевозки всех роботов, описанных в массиве."""
     arr: list[int] = [int(i) for i in arr_str]
     arr.sort()
     count: int = 0
@@ -21,4 +22,6 @@ def count_platforms():
 
 
 if __name__ == '__main__':
-    print(count_platforms())
+    robots_mass = sys.stdin.readline().rstrip().split()
+    limit_weight = int(sys.stdin.readline().rstrip())
+    print(count_platforms(robots_mass, limit_weight))
