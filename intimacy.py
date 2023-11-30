@@ -1,28 +1,30 @@
 import sys
 
 
-def prefix_count():
-    N = int(sys.stdin.readline().rstrip())
-    arr_mass = []
-    arr_len = []
-    count = 0
-    max_count = -1
-    for i in range(N):
-        L = int(sys.stdin.readline().rstrip())
-        arr = [int(i) for i in sys.stdin.readline().rstrip().split()]
-        arr_mass.append(arr)
-        arr_len.append(L)
-    for mass_indx in range(N - 1):
-        L = arr_len[mass_indx]
-        mass = arr_mass[mass_indx]
-        mass_next = arr_mass[mass_indx + 1]
-        for i in range(1, L):
-            count = 0
-            if mass[:i] == mass_next[:i]:
-                count = len(mass[:i])
-                if max_count < count:
-                    max_count = count
+def prefix_similarity(a, b):
+    prefix_len = min(len(a), len(b))
+    for i in range(prefix_len):
+        if a[i] != b[i]:
+            return i
+    return prefix_len
 
 
+def total_similarity(arrays):
+    n = len(arrays)
+    similarity_sum = 0
+    for i in range(n):
+        for j in range(i+1, n):
+            prefix = prefix_similarity(arrays[i], arrays[j])
+            similarity_sum += prefix
+    return similarity_sum
 
 
+n = int(sys.stdin.readline().rstrip())
+arrays = []
+for _ in range(n):
+    _ = int(sys.stdin.readline().rstrip())
+    array = list(map(int, sys.stdin.readline().rstrip().split()))
+    arrays.append(array)
+
+result = total_similarity(arrays)
+print(result)
