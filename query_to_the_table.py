@@ -32,6 +32,8 @@ def query(N, M, Q):
                         count += 1
             if count == N:
                 count_finaly += N
+            else:
+                count_finaly = 0
 
     q += 1
     return count_finaly
